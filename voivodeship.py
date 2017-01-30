@@ -13,8 +13,11 @@ class Voivodeship:
         row_number = 1
         for row in Common.file_loaded[1:]:
             if (row[2], row[3]) == ('', ''):
-                new_county = County.create_county(row_number)
-                voivodeship.counties.append(new_county)
+                if row[4][0].isupper():
+                    pass
+                else:
+                    new_county = County.create_county(row_number)
+                    voivodeship.counties.append(new_county)
             row_number += 1
 
         return voivodeship
