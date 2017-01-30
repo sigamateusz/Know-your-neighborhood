@@ -35,5 +35,6 @@ class County:
 
         return county
 
-    def __str__(self):
+    def get_name(self):
         return self.name
+
