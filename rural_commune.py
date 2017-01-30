@@ -1,0 +1,2 @@
+class RuralCommune:
+    pass

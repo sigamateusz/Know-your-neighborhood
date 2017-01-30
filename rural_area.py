@@ -1,0 +1,2 @@
+class RuralArea:
+    pass

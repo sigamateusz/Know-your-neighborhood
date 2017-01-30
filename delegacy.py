@@ -1,0 +1,2 @@
+class Delegacy:
+    pass

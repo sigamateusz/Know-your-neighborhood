@@ -1,0 +1,2 @@
+class UrbanRuralCommune:
+    pass
