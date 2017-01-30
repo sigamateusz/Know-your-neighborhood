@@ -1,18 +1,20 @@
 from common import Common
+from county import County
 
 
 class Voivodeship:
-    def __init__(self, name, counties):
+    def __init__(self, name):
         self.name = name
-        self.counties = counties
+        self.counties = []
 
-    @staticmethod
-    def create_voivodeship():
-        counties = []
-        name = ''
-        for row in Common.file_loaded:
-            if (row[1], row[2], row[3]) == ('', '', ''):
-                name = row[4]
-            elif (row[2], row[3]) == ('', ''):
-                pass
-        return Voivodeship(name, counties)
+    @classmethod
+    def create_voivodeship(cls):
+        voivodeship = cls(Common.file_loaded[0][4])
+        for row in Common.file_loaded[1:]:
+            if (row[2], row[3]) == ('', ''):
+
+                name = row[1]
+                new_county = County.create_county(name)
+                voivodeship.counties.append(new_county)
+
+        return voivodeship
