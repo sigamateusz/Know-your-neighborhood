@@ -6,7 +6,7 @@ def main():
     Common.load_file(file_name)
 
     maloposkie = Voivodeship.create_voivodeship()
-    print(maloposkie.name)
+    print(maloposkie.counties[0].name)
 
 if __name__ == '__main__':
     main()

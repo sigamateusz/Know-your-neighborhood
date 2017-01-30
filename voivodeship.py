@@ -10,11 +10,11 @@ class Voivodeship:
     @classmethod
     def create_voivodeship(cls):
         voivodeship = cls(Common.file_loaded[0][4])
+        row_number = 1
         for row in Common.file_loaded[1:]:
             if (row[2], row[3]) == ('', ''):
-
-                name = row[1]
-                new_county = County.create_county(name)
+                new_county = County.create_county(row_number)
                 voivodeship.counties.append(new_county)
+            row_number += 1
 
         return voivodeship
