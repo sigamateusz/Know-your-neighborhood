@@ -1,5 +1,3 @@
-from common import Common
-
-
 class County:
-    pass
+    def __init__(self, name):
+        pass

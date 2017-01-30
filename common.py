@@ -10,3 +10,4 @@ class Common:
             data = csv.reader(f, delimiter='\t')
             for row in data:
                 cls.file_loaded.append(row)
+        cls.file_loaded = cls.file_loaded[1:]
