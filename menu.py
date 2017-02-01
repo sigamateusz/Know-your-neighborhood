@@ -49,7 +49,40 @@ class Menu:
 
     @staticmethod
     def longest_names(voivodeship):
-        pass
+        """
+        Prints 3 cities with largest names
+        :param voivodeship: Voivodeship object
+        :return: None
+        """
+        length_name = 0
+        longest_cities = []
+        for county in voivodeship.counties:
+            for city in county.cities:
+                if len(city.get_name()) > length_name:
+                    length_name = len(city.get_name())
+
+        for town in voivodeship.towns_with_district_rights:
+            for city in town.cities:
+                if len(city.get_name()) > length_name:
+                    length_name = len(city.get_name())
+
+        while len(longest_cities) < 3:
+            for county in voivodeship.counties:
+                for city in county.cities:
+                    if len(city.get_name()) == length_name:
+                        longest_cities.append(city.get_name())
+            for town in voivodeship.towns_with_district_rights:
+                for city in town.cities:
+                    if len(city.get_name()) == length_name:
+                        longest_cities.append(city.get_name())
+            length_name -= 1
+
+        output_string = '\n...:::{} -- {} characters:::...\n' \
+                        '...:::{} -- {} characters:::...\n' \
+                        '...:::{} -- {} characters:::...\n'.format(longest_cities[0], len(longest_cities[0]),
+                                                                   longest_cities[1], len(longest_cities[1]),
+                                                                   longest_cities[2], len(longest_cities[2]))
+        print(output_string)
 
     @staticmethod
     def get_menu(menu, menu_from, menu_to):
