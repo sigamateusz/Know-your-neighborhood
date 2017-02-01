@@ -70,7 +70,6 @@ class Menu:
 
         print(output_string)
 
-
     @staticmethod
     def longest_names(voivodeship):
         """
