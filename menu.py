@@ -21,29 +21,6 @@ class Menu:
 
             cls.choose_option(user_choice, voivodeship)
 
-    @staticmethod
-    def get_menu(menu, menu_from, menu_to):
-        """
-        printing menu from menu, menu from option to option
-        :param menu:
-        :param menu_from:
-        :param menu_to:
-        :return option:
-        """
-        while True:
-            print(menu)
-            try:
-
-                option = input("Option: ")
-                if menu_from > int(option) or int(option) > menu_to:
-                    raise NameError('None option')
-                else:
-                    break
-            except:
-                print('Wrong select!')
-
-        return option
-
     @classmethod
     def choose_option(cls, choice, voivodeship):
         """
@@ -69,6 +46,29 @@ class Menu:
 
         elif choice == '0':
             exit()
+
+    @staticmethod
+    def get_menu(menu, menu_from, menu_to):
+        """
+        printing menu from menu, menu from option to option
+        :param menu:
+        :param menu_from:
+        :param menu_to:
+        :return option:
+        """
+        while True:
+            print(menu)
+            try:
+
+                option = input("Option: ")
+                if menu_from > int(option) or int(option) > menu_to:
+                    raise NameError('None option')
+                else:
+                    break
+            except:
+                print('Wrong select!')
+
+        return option
 
     @staticmethod
     def statistics(voivodeship):
