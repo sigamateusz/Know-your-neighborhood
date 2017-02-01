@@ -6,7 +6,9 @@ class Menu:
     @classmethod
     def run(cls):
         voivodeship = Voivodeship.create_voivodeship()
-
+        for county in voivodeship.counties:
+            print(county.name)
+        input()
         while True:
 
             os.system('clear')
@@ -74,7 +76,11 @@ class Menu:
     @staticmethod
     def statistics(voivodeship):
         titles = ['', voivodeship.get_name()]
-        Menu.print_table([['d', 'd'], ['d','d'], ['sdsadsadasd','d'], ['d','d2e22eeqwdwadadssaadsdaadw']],titles)
+        statistics = [['1', 'wojewódźtwo']]
+        statistics.append([int(len(voivodeship.counties)), 'powiaty'])
+        # if len(voivodeship.counties)
+        # Menu.print_table([['d', 'd'], ['d','d'], ['sdsadsadasd','d'], ['d','d2e22eeqwdwadadssaadsdaadw']],titles)
+        Menu.print_table(statistics, titles)
 
     @staticmethod
     def print_table(table, title_list):
