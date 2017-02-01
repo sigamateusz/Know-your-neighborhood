@@ -2,27 +2,30 @@ class City:
     def __init__(self, name):
         self.name = name
 
+    def get_name(self):
+        return self.name
 
-class UrbanRuralCommune:
+
+class UrbanRuralCommune(City):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
 
 
-class RuralCommune:
+class RuralCommune(City):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
 
 
-class RuralArea:
+class RuralArea(City):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
 
 
-class Municipality:
+class Municipality(City):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
 
 
-class Delegacy:
+class Delegacy(City):
     def __init__(self, name):
-        self.name = name
+        super().__init__(name)
