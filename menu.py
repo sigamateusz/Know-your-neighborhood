@@ -51,17 +51,15 @@ class Menu:
 
     @staticmethod
     def advanced_search(voivodeship):
+        titles = ['LOCATION', 'TYPE']
         user_input = input('Searching for: ')
         full_list = Menu.list_of_all_objects(voivodeship)
         output_list = []
-        print(full_list)
-        for i in full_list:
-            if user_input
-            print(i.get_name())
-        # for location in full_list:
-        #     if user_input in location.get_name():
-        #         output_list.append(location)
-        # print(output_list)
+        for location in full_list:
+            if user_input in str(location.get_name()):
+                output_list.append([location.get_name(), location.get_kind()])
+        print('\nFound {} location(s):\n'.format(len(output_list)))
+        Menu.print_table(output_list, titles)
 
     @staticmethod
     def list_of_all(voivodeship):

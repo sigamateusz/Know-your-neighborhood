@@ -22,7 +22,7 @@ class Voivodeship:
                 if row[4][0].isupper():
                     new_town = TownWithDistrictRights.create_county(row_number, 'miasto na prawach powiatu')
                     voivodeship.towns_with_district_rights.append(new_town)
-                    new_county = County(row_number, 'powiat')
+                    new_county = County(row[4][0], 'powiat')
                     voivodeship.counties.append(new_county)
                 else:
                     new_county = County.create_county(row_number, 'powiat')
