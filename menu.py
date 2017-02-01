@@ -9,7 +9,7 @@ class Menu:
         while True:
 
             os.system('clear')
-            options = 'What would you like to do:\n' \
+            options = '\n\nWhat would you like to do:\n' \
                       '\t(1) List statistics\n' \
                       '\t(2) Display 3 cities with longest names\n' \
                       '\t(3) Display county\'s name with the largest number of communities\n' \
@@ -51,6 +51,12 @@ class Menu:
 
     @staticmethod
     def advanced_search(voivodeship):
+        """
+        Asks the user what to look for
+        Prints sorted list
+        :param voivodeship: Voivodeship object
+        :return: None
+        """
         titles = ['LOCATION', 'TYPE']
         user_input = input('Searching for: ')
         full_list = Menu.list_of_all_objects(voivodeship)
@@ -60,7 +66,7 @@ class Menu:
                 output_list.append([location.get_name(), location.get_kind()])
         print('\nFound {} location(s):\n'.format(len(output_list)))
         from common import Common
-        Common.sort_quick(output_list)
+        output_list = Common.sort_quick(output_list)
         Menu.print_table(output_list, titles)
 
     @staticmethod
@@ -111,7 +117,7 @@ class Menu:
     @staticmethod
     def list_of_all_objects(voivodeship):
         """
-        Creates list with strings of all locations
+        Creates list objects of all locations
         :param voivodeship: Voivodeship object
         :return: None
         """
