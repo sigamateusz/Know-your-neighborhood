@@ -31,10 +31,10 @@ class Menu:
         """
         if choice == '1':
             cls.statistics(voivodeship)
-            input()
+            input('Press ENTER')
         elif choice == '2':
-            pass
-
+            cls.longest_names(voivodeship)
+            input('Press ENTER')
         elif choice == '3':
             pass
 
@@ -46,6 +46,10 @@ class Menu:
 
         elif choice == '0':
             exit()
+
+    @staticmethod
+    def longest_names(voivodeship):
+        pass
 
     @staticmethod
     def get_menu(menu, menu_from, menu_to):
@@ -90,7 +94,6 @@ class Menu:
             Menu.calculating_statistics(town, calculations)
 
         Menu.connect_stats(statistics, calculations, town_with_district_rights)
-        print(statistics)
         Menu.print_table(statistics, titles)
 
     @staticmethod

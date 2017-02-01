@@ -1,10 +1,5 @@
+from classes import *
 from common import Common
-from municipality import Municipality
-from rural_commune import RuralCommune
-from urban_rural_commune import UrbanRuralCommune
-from city import City
-from rural_area import RuralArea
-from delegacy import Delegacy
 
 
 class County:
