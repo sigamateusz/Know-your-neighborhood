@@ -36,7 +36,8 @@ class Menu:
             cls.longest_names(voivodeship)
             input('Press ENTER')
         elif choice == '3':
-            pass
+            cls.max_communities(voivodeship)
+            input('Press ENTER')
 
         elif choice == '4':
             pass
@@ -46,6 +47,29 @@ class Menu:
 
         elif choice == '0':
             exit()
+
+    @staticmethod
+    def max_communities(voivodeship):
+        """
+        Prints county with maximal number of communities
+        :param voivodeship: Voivodeship object
+        :return: None
+        """
+        maximal = ['random', 0]
+
+        for county in voivodeship.counties:
+            local_max = 0
+            local_max += len(county.municipality)
+            local_max += len(county.rural_commune)
+            local_max += len(county.urban_rural_commune)
+            # local_max += len(county.town_with_district_rights)
+            if local_max > maximal[1]:
+                maximal = [county.get_name(), local_max]
+
+        output_string = '\n...:::County {} have : {} communities:::...\n'.format(maximal[0], maximal[1])
+
+        print(output_string)
+
 
     @staticmethod
     def longest_names(voivodeship):
