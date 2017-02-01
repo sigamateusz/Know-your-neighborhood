@@ -5,8 +5,6 @@ from common import Common
 class County(City):
     def __init__(self, name, kind):
         super().__init__(name, kind)
-        # self.kind = kind
-        # self.name = name
         self.municipality = []
         self.town_with_district_rights = []
         self.rural_area = []

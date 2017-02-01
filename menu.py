@@ -40,13 +40,138 @@ class Menu:
             input('Press ENTER')
 
         elif choice == '4':
-            pass
+            cls.more_category(voivodeship)
+            input('Press ENTER')
 
         elif choice == '5':
-            pass
-
+            Menu.advanced_search(voivodeship)
+            input('Press ENTER')
         elif choice == '0':
             exit()
+
+    @staticmethod
+    def advanced_search(voivodeship):
+        user_input = input('Searching for: ')
+        full_list = Menu.list_of_all_objects(voivodeship)
+        output_list = []
+        print(full_list)
+        for i in full_list:
+            if user_input
+            print(i.get_name())
+        # for location in full_list:
+        #     if user_input in location.get_name():
+        #         output_list.append(location)
+        # print(output_list)
+
+    @staticmethod
+    def list_of_all(voivodeship):
+        """
+        Creates list with strings of all locations
+        :param voivodeship: Voivodeship object
+        :return: None
+        """
+        full_list = []
+
+        for county in voivodeship.counties:
+            full_list.append(county.get_name())
+            for municipality in county.municipality:
+                full_list.append(municipality.get_name())
+            for towns_with_district_rights in county.town_with_district_rights:
+                full_list.append(towns_with_district_rights.get_name())
+            for rural_area in county.rural_area:
+                full_list.append(rural_area.get_name())
+            for rural_commune in county.rural_commune:
+                full_list.append(rural_commune.get_name())
+            for urban_rural_commune in county.urban_rural_commune:
+                full_list.append(urban_rural_commune.get_name())
+            for cities in county.cities:
+                full_list.append(cities.get_name())
+            for delegacy in county.delegacy:
+                full_list.append(delegacy.get_name())
+
+        for town in voivodeship.towns_with_district_rights:
+            full_list.append(town.get_name())
+            for municipality in town.municipality:
+                full_list.append(municipality.get_name())
+            for towns_with_district_rights in town.town_with_district_rights:
+                full_list.append(towns_with_district_rights.get_name())
+            for rural_area in town.rural_area:
+                full_list.append(rural_area.get_name())
+            for rural_commune in town.rural_commune:
+                full_list.append(rural_commune.get_name())
+            for urban_rural_commune in town.urban_rural_commune:
+                full_list.append(urban_rural_commune.get_name())
+            for cities in town.cities:
+                full_list.append(cities.get_name())
+            for delegacy in town.delegacy:
+                full_list.append(delegacy.get_name())
+
+        return full_list
+
+    @staticmethod
+    def list_of_all_objects(voivodeship):
+        """
+        Creates list with strings of all locations
+        :param voivodeship: Voivodeship object
+        :return: None
+        """
+        full_list = []
+
+        for county in voivodeship.counties:
+            full_list.append(county)
+            for municipality in county.municipality:
+                full_list.append(municipality)
+            for towns_with_district_rights in county.town_with_district_rights:
+                full_list.append(towns_with_district_rights)
+            for rural_area in county.rural_area:
+                full_list.append(rural_area)
+            for rural_commune in county.rural_commune:
+                full_list.append(rural_commune)
+            for urban_rural_commune in county.urban_rural_commune:
+                full_list.append(urban_rural_commune)
+            for cities in county.cities:
+                full_list.append(cities)
+            for delegacy in county.delegacy:
+                full_list.append(delegacy)
+
+        for town in voivodeship.towns_with_district_rights:
+            full_list.append(town)
+            for municipality in town.municipality:
+                full_list.append(municipality)
+            for towns_with_district_rights in town.town_with_district_rights:
+                full_list.append(towns_with_district_rights)
+            for rural_area in town.rural_area:
+                full_list.append(rural_area)
+            for rural_commune in town.rural_commune:
+                full_list.append(rural_commune)
+            for urban_rural_commune in town.urban_rural_commune:
+                full_list.append(urban_rural_commune)
+            for cities in town.cities:
+                full_list.append(cities)
+            for delegacy in town.delegacy:
+                full_list.append(delegacy)
+
+        return full_list
+
+    @staticmethod
+    def more_category(voivodeship):
+        """
+        Displays locations, that belong to more than one category
+        :param voivodeship: Voivodeship object
+        :return: None
+        """
+        repeated = []
+        full_list = Menu.list_of_all(voivodeship)
+        while len(full_list) > 1:
+            location = full_list.pop(0)
+            if location in full_list:
+                repeated.append(location)
+
+        repeated = set(repeated)
+        repeated = list(repeated)
+        repeated.sort()
+        for location in repeated:
+            print(':::{:^25}:::'.format(location))
 
     @staticmethod
     def max_communities(voivodeship):
