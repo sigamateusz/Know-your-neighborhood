@@ -6,9 +6,6 @@ class Menu:
     @classmethod
     def run(cls):
         voivodeship = Voivodeship.create_voivodeship()
-        for county in voivodeship.counties:
-            print(county.name)
-        input()
         while True:
 
             os.system('clear')
@@ -75,23 +72,69 @@ class Menu:
 
     @staticmethod
     def statistics(voivodeship):
+        """
+        Counts and displays statistics
+        :param voivodeship: Voivodeship object
+        :return: None
+        """
         titles = ['', voivodeship.get_name()]
-        statistics = [['1', 'wojewódźtwo']]
-        statistics.append([int(len(voivodeship.counties)), 'powiaty'])
-        # if len(voivodeship.counties)
-        # Menu.print_table([['d', 'd'], ['d','d'], ['sdsadsadasd','d'], ['d','d2e22eeqwdwadadssaadsdaadw']],titles)
+        statistics = [[1, 'wojewódźtwo'], [int(len(voivodeship.counties)), 'powiaty']]
+
+        town_with_district_rights = len(voivodeship.towns_with_district_rights)
+        calculations = {'municipality': 0, 'rural_area': 0, 'rural_commune': 0,
+                        'urban_rural_commune': 0, 'cities': 0, 'delegacy': 0}
+
+        for county in voivodeship.counties:
+            Menu.calculating_statistics(county, calculations)
+        for town in voivodeship.towns_with_district_rights:
+            Menu.calculating_statistics(town, calculations)
+
+        Menu.connect_stats(statistics, calculations, town_with_district_rights)
+        print(statistics)
         Menu.print_table(statistics, titles)
+
+    @staticmethod
+    def connect_stats(statistics, calculations, town_with_district_rights):
+        """
+        It combines all the statistics in one list
+        :param statistics: list
+        :param calculations: dict
+        :param town_with_district_rights: int
+        :return: None
+        """
+        statistics.append([calculations['municipality'], 'gmina miejska'])
+        statistics.append([calculations['rural_commune'], 'wiejska'])
+        statistics.append([calculations['urban_rural_commune'], 'gmina miejsko - wiejska'])
+        statistics.append([calculations['rural_area'], 'obszar wiejski'])
+        statistics.append([calculations['cities'], 'miasto'])
+        statistics.append([town_with_district_rights, 'miasto na prawach powiatu'])
+        statistics.append([calculations['delegacy'], 'delegatura'])
+
+    @staticmethod
+    def calculating_statistics(county, calculations):
+        """
+        Added together statistics
+        :param county: County object
+        :param calculations: dict
+        :return: None
+        """
+        calculations['municipality'] += int(len(county.municipality))
+        calculations['rural_area'] += int(len(county.rural_area))
+        calculations['rural_commune'] += int(len(county.rural_commune))
+        calculations['urban_rural_commune'] += int(len(county.urban_rural_commune))
+        calculations['cities'] += int(len(county.cities))
+        calculations['delegacy'] += int(len(county.delegacy))
 
     @staticmethod
     def print_table(table, title_list):
         """
-               Displays table
+        Displays table
 
-               Args:
-                   table(list): table to print
-                   title_list(list): headers for table
-                Returns:
-                   This function doesn't return anything it only prints to console.
+        Args:
+           table(list): table to print
+           title_list(list): headers for table
+        Returns:
+           This function doesn't return anything it only prints to console.
         """
 
         # checking largest cells
