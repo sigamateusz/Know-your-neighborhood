@@ -59,6 +59,8 @@ class Menu:
             if user_input in str(location.get_name()):
                 output_list.append([location.get_name(), location.get_kind()])
         print('\nFound {} location(s):\n'.format(len(output_list)))
+        from common import Common
+        Common.sort_quick(output_list)
         Menu.print_table(output_list, titles)
 
     @staticmethod
