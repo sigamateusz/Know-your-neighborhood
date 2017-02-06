@@ -1,4 +1,4 @@
-class City:
+class Location:
     def __init__(self, name, kind):
         self.name = name
         self.kind = kind
@@ -10,26 +10,31 @@ class City:
         return self.name
 
 
-class UrbanRuralCommune(City):
+class City(Location):
     def __init__(self, name, kind):
         super().__init__(name, kind)
 
 
-class RuralCommune(City):
+class UrbanRuralCommune(Location):
     def __init__(self, name, kind):
         super().__init__(name, kind)
 
 
-class RuralArea(City):
+class RuralCommune(Location):
     def __init__(self, name, kind):
         super().__init__(name, kind)
 
 
-class Municipality(City):
+class RuralArea(Location):
     def __init__(self, name, kind):
         super().__init__(name, kind)
 
 
-class Delegacy(City):
+class Municipality(Location):
+    def __init__(self, name, kind):
+        super().__init__(name, kind)
+
+
+class Delegacy(Location):
     def __init__(self, name, kind):
         super().__init__(name, kind)

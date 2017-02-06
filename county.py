@@ -2,7 +2,7 @@ from classes import *
 from common import Common
 
 
-class County(City):
+class County(Location):
     def __init__(self, name, kind):
         super().__init__(name, kind)
         self.municipality = []
