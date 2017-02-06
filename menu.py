@@ -78,40 +78,16 @@ class Menu:
         """
         full_list = []
 
-        for county in voivodeship.counties:
-            full_list.append(county.get_name())
-            for municipality in county.municipality:
-                full_list.append(municipality.get_name())
-            for towns_with_district_rights in county.town_with_district_rights:
-                full_list.append(towns_with_district_rights.get_name())
-            for rural_area in county.rural_area:
-                full_list.append(rural_area.get_name())
-            for rural_commune in county.rural_commune:
-                full_list.append(rural_commune.get_name())
-            for urban_rural_commune in county.urban_rural_commune:
-                full_list.append(urban_rural_commune.get_name())
-            for cities in county.cities:
-                full_list.append(cities.get_name())
-            for delegacy in county.delegacy:
-                full_list.append(delegacy.get_name())
+        dict_of_voivodeship = vars(voivodeship)
 
-        for town in voivodeship.towns_with_district_rights:
-            full_list.append(town.get_name())
-            for municipality in town.municipality:
-                full_list.append(municipality.get_name())
-            for towns_with_district_rights in town.town_with_district_rights:
-                full_list.append(towns_with_district_rights.get_name())
-            for rural_area in town.rural_area:
-                full_list.append(rural_area.get_name())
-            for rural_commune in town.rural_commune:
-                full_list.append(rural_commune.get_name())
-            for urban_rural_commune in town.urban_rural_commune:
-                full_list.append(urban_rural_commune.get_name())
-            for cities in town.cities:
-                full_list.append(cities.get_name())
-            for delegacy in town.delegacy:
-                full_list.append(delegacy.get_name())
-
+        for area in dict_of_voivodeship:
+            if isinstance(dict_of_voivodeship[area], list):
+                for position in dict_of_voivodeship[area]:
+                    full_list.append(position.get_name())
+                    for locations_lists in vars(position):
+                        if type(vars(position)[locations_lists]) == list:
+                            for location in vars(position)[locations_lists]:
+                                full_list.append(location.get_name())
         return full_list
 
     @staticmethod
@@ -176,8 +152,10 @@ class Menu:
         repeated = set(repeated)
         repeated = list(repeated)
         repeated.sort()
+        i = 1
         for location in repeated:
-            print(':::{:^25}:::'.format(location))
+            print(':::  {:^3}-  {:<22}  :::'.format(i, location))
+            i += 1
 
     @staticmethod
     def max_communities(voivodeship):
