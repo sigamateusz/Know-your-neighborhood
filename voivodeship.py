@@ -20,12 +20,12 @@ class Voivodeship:
         for row in Common.file_loaded[1:]:
             if (row[2], row[3]) == ('', ''):
                 if row[4][0].isupper():
-                    new_town = TownWithDistrictRights.create_county(row_number, 'miasto na prawach powiatu')
+                    new_town = TownWithDistrictRights.create_county(row_number)
                     voivodeship.towns_with_district_rights.append(new_town)
-                    new_county = County(row[4], 'powiat')
+                    new_county = County(row[4])
                     voivodeship.counties.append(new_county)
                 else:
-                    new_county = County.create_county(row_number, 'powiat')
+                    new_county = County.create_county(row_number)
                     voivodeship.counties.append(new_county)
             row_number += 1
 

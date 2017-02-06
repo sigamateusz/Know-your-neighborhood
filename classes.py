@@ -11,30 +11,30 @@ class Location:
 
 
 class City(Location):
-    def __init__(self, name, kind):
-        super().__init__(name, kind)
+    def __init__(self, name):
+        super().__init__(name, 'miasto')
 
 
 class UrbanRuralCommune(Location):
-    def __init__(self, name, kind):
-        super().__init__(name, kind)
+    def __init__(self, name):
+        super().__init__(name, 'gmina miejsko - wiejska')
 
 
 class RuralCommune(Location):
-    def __init__(self, name, kind):
-        super().__init__(name, kind)
+    def __init__(self, name):
+        super().__init__(name, 'gmina wiejska')
 
 
 class RuralArea(Location):
-    def __init__(self, name, kind):
-        super().__init__(name, kind)
+    def __init__(self, name):
+        super().__init__(name, 'obszar wiejski')
 
 
 class Municipality(Location):
-    def __init__(self, name, kind):
-        super().__init__(name, kind)
+    def __init__(self, name):
+        super().__init__(name, 'gmina miejska')
 
 
 class Delegacy(Location):
-    def __init__(self, name, kind):
-        super().__init__(name, kind)
+    def __init__(self, name):
+        super().__init__(name, 'delegatura')
