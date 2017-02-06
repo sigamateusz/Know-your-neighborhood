@@ -70,11 +70,12 @@ class Menu:
         Menu.print_table(output_list, titles)
 
     @staticmethod
-    def list_of_all(voivodeship):
+    def list_of_all(voivodeship, name=True):
         """
         Creates list with strings of all locations
         :param voivodeship: Voivodeship object
-        :return: None
+        :param name: boolean - if is True returns strings, else returns objects
+        :return: list with strings or Location() objects
         """
         full_list = []
 
@@ -83,57 +84,28 @@ class Menu:
         for area in dict_of_voivodeship:
             if isinstance(dict_of_voivodeship[area], list):
                 for position in dict_of_voivodeship[area]:
-                    full_list.append(position.get_name())
+
+                    if name:
+                        full_list.append(position.get_name())
+                    else:
+                        full_list.append(position)
                     for locations_lists in vars(position):
                         if type(vars(position)[locations_lists]) == list:
                             for location in vars(position)[locations_lists]:
-                                full_list.append(location.get_name())
+                                if name:
+                                    full_list.append(location.get_name())
+                                else:
+                                    full_list.append(location)
         return full_list
 
-    @staticmethod
-    def list_of_all_objects(voivodeship):
+    @classmethod
+    def list_of_all_objects(cls, voivodeship):
         """
         Creates list objects of all locations
         :param voivodeship: Voivodeship object
-        :return: None
+        :return: list with Location() objects
         """
-        full_list = []
-
-        for county in voivodeship.counties:
-            full_list.append(county)
-            for municipality in county.municipality:
-                full_list.append(municipality)
-            for towns_with_district_rights in county.town_with_district_rights:
-                full_list.append(towns_with_district_rights)
-            for rural_area in county.rural_area:
-                full_list.append(rural_area)
-            for rural_commune in county.rural_commune:
-                full_list.append(rural_commune)
-            for urban_rural_commune in county.urban_rural_commune:
-                full_list.append(urban_rural_commune)
-            for cities in county.cities:
-                full_list.append(cities)
-            for delegacy in county.delegacy:
-                full_list.append(delegacy)
-
-        for town in voivodeship.towns_with_district_rights:
-            full_list.append(town)
-            for municipality in town.municipality:
-                full_list.append(municipality)
-            for towns_with_district_rights in town.town_with_district_rights:
-                full_list.append(towns_with_district_rights)
-            for rural_area in town.rural_area:
-                full_list.append(rural_area)
-            for rural_commune in town.rural_commune:
-                full_list.append(rural_commune)
-            for urban_rural_commune in town.urban_rural_commune:
-                full_list.append(urban_rural_commune)
-            for cities in town.cities:
-                full_list.append(cities)
-            for delegacy in town.delegacy:
-                full_list.append(delegacy)
-
-        return full_list
+        return cls.list_of_all(voivodeship, False)
 
     @staticmethod
     def more_category(voivodeship):
